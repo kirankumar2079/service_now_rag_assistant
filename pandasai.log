@@ -1,0 +1,818 @@
+2024-11-06 16:31:38 [INFO] Question: who resolved most incidents
+2024-11-06 16:31:38 [INFO] Running PandasAI with local LLM...
+2024-11-06 16:31:38 [INFO] Prompt ID: fd22aebe-0d80-417d-9e67-71a11da513b1
+2024-11-06 16:31:38 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-06 16:31:38 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-06 16:31:38 [INFO] Executing Step 1: CacheLookup
+2024-11-06 16:31:38 [INFO] Executing Step 2: PromptGeneration
+2024-11-06 16:31:38 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC041,Website updates,Need help with project tools,IT Support,Paul Black,Medium,Network,Approved cloud storage request,2024-02-22 14:15,Mark Taylor,John Doe,2024-03-22 11:00
+INC004,Integration issue,Printer not working,Software Support,Kate Wilson,High,Resource Management,Assisted with mobile app setup,2024-02-15 14:30,Emily White,Kate Wilson,2024-04-12 10:30
+INC013,Cloud migration,Slow internet speed,Server Team,John Doe,Low,Data Migration,Troubleshot connection issues,2024-04-16 10:00,Chris Evans,Tom Brown,2024-01-10 10:00
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ who resolved most incidents
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-06 16:31:38 [INFO] Executing Step 3: CodeGenerator
+2024-11-06 16:33:57 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:33:58 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC041,Website updates,Need help with project tools,IT Support,Paul Black,Medium,Network,Approved cloud storage request,2024-02-22 14:15,Mark Taylor,John Doe,2024-03-22 11:00
+INC004,Integration issue,Printer not working,Software Support,Kate Wilson,High,Resource Management,Assisted with mobile app setup,2024-02-15 14:30,Emily White,Kate Wilson,2024-04-12 10:30
+INC013,Cloud migration,Slow internet speed,Server Team,John Doe,Low,Data Migration,Troubleshot connection issues,2024-04-16 10:00,Chris Evans,Tom Brown,2024-01-10 10:00
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ who resolved most incidents
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-06 16:33:58 [INFO] Code generated:
+            ```
+            def get_who_resolved_most_incidents(dfs):
+    # Assuming dfs[0] is the first incident in the list
+    resolved_count = {}
+    max_resolutions = 0
+    
+    for index, row in dfs[0].iterrows():
+        resolution_by = row['Resolved By']
+        count = resolved_count.get(resolution_by, 0)
+        resolved_count[resolution_by] = count + 1
+        
+        if count+1 > max_resolutions:
+            max_resolutions = count+1
+
+    most_resolvedResolutionBy = []
+    
+    for key, value in resolved_count.items():
+        if value == max_resolutions:
+            most_resolvedResolutionBy.append(key)
+
+    result = {
+        "type": "string",
+        "value": f"Most incidents resolved by {', '.join(most_resolvedResolutionBy)}."
+    }
+    return result
+
+import pandas as pd
+dfs = [
+    pd.DataFrame({
+        'Incident Number': [100, 123, 456],
+        'Short Description': ['Test1', 'Test2', 'Test3'],
+        'Description': ['This is test1', 'This is test2', 'This is test3'],
+        'Assignment Group': ['TestGroup1', 'TestGroup2', 'TestGroup3'],
+        'Assigned To': ['John Smith', 'Jane Doe', 'Bob Brown'],
+        'Priority': [1, 2, 3],
+        'Category': ['Category 1', 'Category 2', 'Category 3'],
+        'Resolution Steps': ['Steps for Inc001', 'Steps for Inc002', 'Steps for Inc003'],
+        'Created At': ['2024-02-22 14:15', '2024-04-12 10:30', '2024-05-15 16:45'],
+        'Created By': ['Mark Taylor', 'Emily White', 'Chris Evans'],
+        'Resolved By': ['John Doe', 'Kate Wilson', 'Tom Brown'],
+        'Resolved Date': ['2024-03-22 11:00', '2024-04-12 10:30', '2024-01-10 10:00']
+    }),
+    pd.DataFrame({
+        'Incident Number': [100, 150],
+        'Short Description': ['Test1', 'Test2'],
+        'Description': ['This is test1', 'This is test2'],
+        'Assignment Group': ['TestGroup1', 'TestGroup2'],
+        'Assigned To': ['John Smith', 'Jane Doe'],
+        'Priority': [1, 2],
+        'Category': ['Category 1', 'Category 2'],
+        'Resolution Steps': ['Steps for Inc001', 'Steps for Inc002'],
+        'Created At': ['2024-02-22 14:15', '2024-04-16 10:00'],
+        'Created By': ['Mark Taylor', 'Chris Evans'],
+        'Resolved By': ['John Doe', 'Tom Brown'],
+        'Resolved Date': ['2024-03-22 11:00', '2024-01-10 10:00']
+    })
+]
+result = get_who_resolved_most_incidents(dfs)
+print(result)
+            ```
+            
+2024-11-06 16:33:58 [INFO] Executing Step 4: CachePopulation
+2024-11-06 16:33:58 [INFO] Executing Step 5: CodeCleaning
+2024-11-06 16:33:58 [INFO] 
+Code running:
+```
+def get_who_resolved_most_incidents(dfs):
+    resolved_count = {}
+    max_resolutions = 0
+    for index, row in dfs[0].iterrows():
+        resolution_by = row['Resolved By']
+        count = resolved_count.get(resolution_by, 0)
+        resolved_count[resolution_by] = count + 1
+        if count + 1 > max_resolutions:
+            max_resolutions = count + 1
+    most_resolvedResolutionBy = []
+    for key, value in resolved_count.items():
+        if value == max_resolutions:
+            most_resolvedResolutionBy.append(key)
+    result = {'type': 'string', 'value': f"Most incidents resolved by {', '.join(most_resolvedResolutionBy)}."}
+    return result
+
+
+result = get_who_resolved_most_incidents(dfs)
+print(result)
+        ```
+2024-11-06 16:33:58 [INFO] Executing Step 6: CodeExecution
+2024-11-06 16:33:58 [INFO] Executing Step 7: ResultValidation
+2024-11-06 16:33:58 [INFO] Answer: {'type': 'string', 'value': 'Most incidents resolved by Mark Taylor.'}
+2024-11-06 16:33:58 [INFO] Executing Step 8: ResultParsing
+2024-11-06 16:35:06 [INFO] Question: what are the most common incidents
+
+2024-11-06 16:35:06 [INFO] Running PandasAI with local LLM...
+2024-11-06 16:35:06 [INFO] Prompt ID: f3b1ceab-ebdd-4acb-ad3e-21470425a716
+2024-11-06 16:35:06 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-06 16:35:06 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-06 16:35:06 [INFO] Executing Step 1: CacheLookup
+2024-11-06 16:35:06 [INFO] Executing Step 2: PromptGeneration
+2024-11-06 16:35:06 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC027,Backup request,Request for cloud storage,Email Support,Susan Lee,Medium,Data Backup,Configured email settings,2024-03-12 10:00,John Doe,Kate Wilson,2024-01-15 09:00
+INC004,License issue,API integration failure,Network Team,Emily White,Low,Data Management,Analyzed network performance,2024-02-14 10:45,Emily White,Linda Green,2024-02-02 13:00
+INC067,Website performance,Need Adobe installed,IT Support,Paul Black,High,Security,Provided training resources,2024-03-26 11:00,Paul Black,Chris Evans,2024-03-26 12:00
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what are the most common incidents
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-06 16:35:06 [INFO] Executing Step 3: CodeGenerator
+2024-11-06 16:37:10 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:37:10 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC027,Backup request,Request for cloud storage,Email Support,Susan Lee,Medium,Data Backup,Configured email settings,2024-03-12 10:00,John Doe,Kate Wilson,2024-01-15 09:00
+INC004,License issue,API integration failure,Network Team,Emily White,Low,Data Management,Analyzed network performance,2024-02-14 10:45,Emily White,Linda Green,2024-02-02 13:00
+INC067,Website performance,Need Adobe installed,IT Support,Paul Black,High,Security,Provided training resources,2024-03-26 11:00,Paul Black,Chris Evans,2024-03-26 12:00
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what are the most common incidents
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-06 16:37:10 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+def find_most_common_incidents(dfs):
+    # Get all incident descriptions and count occurrences of each one
+    description_counts = dfs[0]['Description'].value_counts().reset_index()
+    description_counts.columns = ['Description', 'Count']
+    
+    if not description_counts['Count'].sum() == 0:
+        most_common_description = description_counts.loc[description_counts['Count'].idxmax()]
+        
+        # Return the result as a dictionary
+        return {
+            "type": "dataframe", 
+            "value": pd.DataFrame({
+                'Description': [most_common_description['Description']],
+                'Count': [most_common_description['Count']]
+            })
+        }
+    else:
+        return {
+            "type": "message",
+            "value": f"No incidents recorded."
+        }
+
+dfs = [
+    pd.DataFrame(
+        {
+            "Incident Number": ["INC027"],
+            "Short Description": ["Backup request"],
+            "Description": ["Request for cloud storage"],
+            "Assignment Group": ["Email Support"],
+            "Assigned To": ["Susan Lee"],
+            "Priority": ["Medium"],
+            "Category": ["Data Backup"],
+            "Resolution Steps": ["Configured email settings"],
+            "Created At": ["2024-03-12 10:00"],
+            "Created By": ["John Doe"],
+            "Resolved By": ["Kate Wilson"],
+            "Resolved Date": ["2024-01-15 09:00"]
+        }
+    ),
+    pd.DataFrame(
+        {
+            "Incident Number": ["INC004"],
+            "Short Description": ["License issue"],
+            "Description": ["API integration failure"],
+            "Assignment Group": ["Network Team"],
+            "Assigned To": ["Emily White"],
+            "Priority": ["Low"],
+            "Category": ["Data Management"],
+            "Resolution Steps": ["Analyzed network performance"],
+            "Created At": ["2024-02-14 10:45"],
+            "Created By": ["Emily White"],
+            "Resolved By": ["Linda Green"],
+            "Resolved Date": ["2024-02-02 13:00"]
+        }
+    ),
+    pd.DataFrame(
+        {
+            "Incident Number": ["INC067"],
+            "Short Description": ["Website performance"],
+            "Description": ["Need Adobe installed"],
+            "Assignment Group": ["IT Support"],
+            "Assigned To": ["Paul Black"],
+            "Priority": ["High"],
+            "Category": ["Security"],
+            "Resolution Steps": ["Provided training resources"],
+            "Created At": ["2024-03-26 11:00"],
+            "Created By": ["Paul Black"],
+            "Resolved By": ["Chris Evans"],
+            "Resolved Date": ["2024-03-26 12:00"]
+        }
+    )
+]
+
+result = find_most_common_incidents(dfs)
+
+print(result)
+            ```
+            
+2024-11-06 16:37:10 [INFO] Executing Step 4: CachePopulation
+2024-11-06 16:37:11 [INFO] Executing Step 5: CodeCleaning
+2024-11-06 16:37:11 [INFO] 
+Code running:
+```
+def find_most_common_incidents(dfs):
+    description_counts = dfs[0]['Description'].value_counts().reset_index()
+    description_counts.columns = ['Description', 'Count']
+    if not description_counts['Count'].sum() == 0:
+        most_common_description = description_counts.loc[description_counts['Count'].idxmax()]
+        return {'type': 'dataframe', 'value': pd.DataFrame({'Description': [most_common_description['Description']], 'Count': [most_common_description['Count']]})}
+    else:
+        return {'type': 'message', 'value': f'No incidents recorded.'}
+
+
+result = find_most_common_incidents(dfs)
+print(result)
+        ```
+2024-11-06 16:37:11 [INFO] Executing Step 6: CodeExecution
+2024-11-06 16:37:11 [INFO] Executing Step 7: ResultValidation
+2024-11-06 16:37:11 [INFO] Answer: {'type': 'dataframe', 'value':              Description  Count
+0  User unable to log in      1}
+2024-11-06 16:37:11 [INFO] Executing Step 8: ResultParsing
+2024-11-06 16:37:52 [INFO] Question: what is the incident number INC001
+
+2024-11-06 16:37:52 [INFO] Running PandasAI with local LLM...
+2024-11-06 16:37:52 [INFO] Prompt ID: e78f5ffd-f9c3-46d4-a948-2dc99c851c5c
+2024-11-06 16:37:52 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-06 16:37:52 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-06 16:37:52 [INFO] Executing Step 1: CacheLookup
+2024-11-06 16:37:52 [INFO] Executing Step 2: PromptGeneration
+2024-11-06 16:37:52 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is the incident number INC001
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-06 16:37:52 [INFO] Executing Step 3: CodeGenerator
+2024-11-06 16:38:41 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:38:41 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is the incident number INC001
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-06 16:38:41 [INFO] Code generated:
+            ```
+            # Import required dependencies 
+import pandas as pd
+import matplotlib.pyplot as plt 
+
+# TODO Write code here 
+
+# Declare result var and df list:
+incident_number = "INC001"
+possible_values = ["string", "number", "dataframe", "plot"]
+result = {
+    "type": "dataframe",
+    "value": dfs[[['Incident Number']]], 
+    }
+
+print(result)
+            ```
+            
+2024-11-06 16:38:41 [INFO] Executing Step 4: CachePopulation
+2024-11-06 16:38:41 [INFO] Executing Step 5: CodeCleaning
+2024-11-06 16:38:41 [INFO] 
+Code running:
+```
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[[['Incident Number']]]}
+print(result)
+        ```
+2024-11-06 16:38:41 [INFO] Executing Step 6: CodeExecution
+2024-11-06 16:38:41 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not list
+
+2024-11-06 16:38:41 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-11-06 16:38:41 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-11-06 16:38:41 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-11-06 16:38:41 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[[['Incident Number']]]}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not list
+
+
+Fix the python code above and return the new python code:
+2024-11-06 16:38:41 [INFO] Executing Step 1: CodeGenerator
+2024-11-06 16:39:20 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:39:20 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[[['Incident Number']]]}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not list
+
+
+Fix the python code above and return the new python code:
+            
+2024-11-06 16:39:20 [INFO] Code generated:
+            ```
+            incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number]}
+print(result)
+            ```
+            
+2024-11-06 16:39:20 [INFO] Executing Step 2: CodeCleaning
+2024-11-06 16:39:20 [INFO] 
+Code running:
+```
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number]}
+print(result)
+        ```
+2024-11-06 16:39:20 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+2024-11-06 16:39:20 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-11-06 16:39:20 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-11-06 16:39:20 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-11-06 16:39:20 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number]}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+
+Fix the python code above and return the new python code:
+2024-11-06 16:39:20 [INFO] Executing Step 1: CodeGenerator
+2024-11-06 16:40:13 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:40:13 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number]}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+
+Fix the python code above and return the new python code:
+            
+2024-11-06 16:40:13 [INFO] Code generated:
+            ```
+            incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+
+# Filter the dataframe by incident number
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number].reset_index(drop=True)}
+
+print(result)
+            ```
+            
+2024-11-06 16:40:13 [INFO] Executing Step 2: CodeCleaning
+2024-11-06 16:40:13 [INFO] 
+Code running:
+```
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number].reset_index(drop=True)}
+print(result)
+        ```
+2024-11-06 16:40:13 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+2024-11-06 16:40:13 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-11-06 16:40:13 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-11-06 16:40:13 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-11-06 16:40:13 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number].reset_index(drop=True)}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+
+Fix the python code above and return the new python code:
+2024-11-06 16:40:13 [INFO] Executing Step 1: CodeGenerator
+2024-11-06 16:41:14 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-06 16:41:14 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC057,Network issue,Firewall blocking access,Database Team,Sarah Connor,Medium,Data Cleanup,Configured analytics tool,2024-01-17 09:15,Paul Black,Emily White,2024-03-20 11:00
+INC020,IT compliance,Renew software license,IT Support,Kate Wilson,High,Security,Conducted compliance review,2024-03-01 10:15,Kate Wilson,Susan Lee,2024-02-11 10:30
+INC009,File sharing issue,Need to configure software,Network Team,Mark Taylor,Low,Hardware,Performed backup,2024-03-21 14:00,Sarah Connor,Kate Wilson,2024-03-07 12:30
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ what is the incident number INC001
+
+
+You generated this python code:
+incident_number = 'INC001'
+possible_values = ['string', 'number', 'dataframe', 'plot']
+result = {'type': 'dataframe', 'value': dfs[dfs['Incident Number'] == incident_number].reset_index(drop=True)}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 3, in <module>
+TypeError: list indices must be integers or slices, not str
+
+
+Fix the python code above and return the new python code:
+            
+2024-11-06 16:41:14 [INFO] Code generated:
+            ```
+            result = {'type': 'dataframe', 'value': dfs[dfs.loc[:, 'Incident Number'] == incident_number].reset_index(drop=True)}
+            ```
+            
+2024-11-06 16:41:14 [INFO] Executing Step 2: CodeCleaning
+2024-11-06 16:41:14 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[dfs.loc[:, 'Incident Number'] == incident_number].reset_index(drop=True)}
+        ```
+2024-11-06 16:41:14 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+  File "D:\projects\ollamatest\test\lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'loc'
+
+2024-11-06 16:41:14 [ERROR] Pipeline failed on step 6: 'list' object has no attribute 'loc'
+2024-11-07 14:49:28 [INFO] Question: who solved most issues
+2024-11-07 14:49:28 [INFO] Running PandasAI with local LLM...
+2024-11-07 14:49:28 [INFO] Prompt ID: 12d24bb6-0d20-42fb-be62-b146e5bf5a6c
+2024-11-07 14:49:28 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-07 14:49:28 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-07 14:49:28 [INFO] Executing Step 1: CacheLookup
+2024-11-07 14:49:28 [INFO] Executing Step 2: PromptGeneration
+2024-11-07 14:49:28 [INFO] Using prompt: <dataframe>
+dfs[0]:100x12
+Incident Number,Short Description,Description,Assignment Group,Assigned To,Priority,Category,Resolution Steps,Created At,Created By,Resolved By,Resolved Date
+INC022,Software licensing,Need help with mobile app,Email Support,Paul Black,Low,Training,Conducted compliance review,2024-01-17 09:15,Paul Black,Emily White,2024-03-03 09:30
+INC087,Email signature setup,Need to audit access permissions,IT Support,Sarah Connor,High,Website,Fixed API endpoint,2024-04-04 11:00,Kate Wilson,Jane Smith,2024-03-21 15:00
+INC085,Policy review,Test new software features,Network Team,Kate Wilson,Medium,Security,Rebooted router,2024-04-13 10:00,Chris Evans,Paul Black,2024-04-19 09:30
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ who solved most issues
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-07 14:49:28 [INFO] Executing Step 3: CodeGenerator
+2024-11-07 14:52:37 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-07 14:52:37 [ERROR] Pipeline failed on step 3: No code found in the response
